@@ -2,3 +2,7 @@ body{
     font-family: 'Open Sans Condensed', sans-serif;
     padding: 1em 2em;
 }
+
+*{
+    box-sizing: border-box;
+}
