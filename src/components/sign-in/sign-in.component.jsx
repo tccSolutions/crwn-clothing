@@ -3,7 +3,7 @@ import { CustomButton } from "../custom-button/custom-button.component";
 import { FormInput } from "../form-input/form-input.component";
 import { auth, SignInWithGoogle } from "../../firebase/firebase.util";
 import "./sign-in.styles.scss";
-import { setCatchHandler } from "workbox-routing";
+
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +56,7 @@ export const SignIn = () => {
         />
         <div className='button-container'>
         <CustomButton type="submit">Sign In</CustomButton>
-        <CustomButton onClick={SignInWithGoogle} isGoogleSignIn>
+        <CustomButton type='button' onClick={SignInWithGoogle} isGoogleSignIn>
           {``}
           Google Sign In{``}
         </CustomButton>
