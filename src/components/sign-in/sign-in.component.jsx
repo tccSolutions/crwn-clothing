@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { CustomButton } from "../custom-button/custom-button.component";
 import { FormInput } from "../form-input/form-input.component";
-import { SignInWithGoogle } from "../../firebase/firebase.util";
+import { auth, SignInWithGoogle } from "../../firebase/firebase.util";
 import "./sign-in.styles.scss";
+import { setCatchHandler } from "workbox-routing";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setEmail("changed");
-    setPassword("changed");
-    console.log(`email:${email} password:${password}`);
+  const handleSubmit = async(event) => {   
+    event.preventDefault();    
+    try{
+     await auth.signInWithEmailAndPassword(email,password)
+     setMessage("Successfully Signed In");
+    }catch(err){setMessage(err.message)}
   };
 
   const handleChange = (event) => {
@@ -58,6 +61,7 @@ export const SignIn = () => {
           Google Sign In{``}
         </CustomButton>
         </div>
+        <p>{message}</p>
         
       </form>
     </div>
