@@ -4,7 +4,7 @@ import { ShopPreview } from "../../components/shop-preview/shop-preview.componen
 import './shop.style.scss'
 
 export const Shop = () => {
-  const [collections = SHOP_DATA, setCollections] = useState();
+  const [collections = SHOP_DATA] = useState();
 
   return (
     <div className="shop">

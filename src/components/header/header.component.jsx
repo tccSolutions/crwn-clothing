@@ -9,6 +9,14 @@ export const Header = ({ user, signOut }) => (
     <Link to="/" className="logo-container">
       <Logo className="logo" />
     </Link>
+    <div className='options'>
+      {user && user.displayName != null?
+      ( <div className='option'>{`Welcome, ${user.displayName.split(" ")[0]}!`}</div>)
+      :("")
+    }
+     
+    </div>
+
     <div className="options">
       <Link to="/shop" className="option">
         SHOP
@@ -17,7 +25,9 @@ export const Header = ({ user, signOut }) => (
         CONTACT
       </Link>
       {user ? (
-        <div className="option" onClick={() => auth.signOut()}>Sign Out</div>
+        <div className="option" onClick={() => auth.signOut()}>
+          Sign Out
+        </div>
       ) : (
         <Link to="/signin" className="option">
           Sign in

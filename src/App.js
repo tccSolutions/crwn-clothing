@@ -6,44 +6,49 @@ import { Hats } from "./pages/hats/hats.component";
 import { Shop } from "./pages/shop/shop.component";
 import { Header } from "./components/header/header.component";
 import { SignInSignUp } from "./pages/sign-in-sign-up/sign-in-sign-up.component";
-import {auth} from './firebase/firebase.util'
+import {auth, createProfileDocument} from './firebase/firebase.util'
 
 function App() {
+  //state with hook
   const [currentUser=null, setCurrentUser] = useState({});
   
-  let unSubscribeFromAuth= null;
-
-  const signOut=()=>{
-   auth.signOut()   
-  }
-
+   //get google data and set current user 
   const  onAuthStateChange =()=> {
-    return auth.onAuthStateChanged(user => {
-      if (user) {
-        
-        setCurrentUser(user)
-        console.log(`${currentUser.displayName} is logged in`);
-      } else {
-        console.log(`${currentUser.displayName} has logged out`);
+    return auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createProfileDocument(userAuth);       
+          userRef.onSnapshot(snapShot=>(setCurrentUser(
+            {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          )));                 
+         
+      } else {       
         setCurrentUser(null)
       }
     });
   }
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChange();
-    return () => {
-      unsubscribe();
-    };
+  
+  
+
+  //updates on state change
+  useEffect(() => {    
+   //unsubscribe from google service
+  const unsubscribe = onAuthStateChange();
+  return () => {
+    unsubscribe();        
+  };     
   }, []);  
 
     
   return (
     <div>
-      <Header signOut={signOut} user = {currentUser}/>
+      <Header signOut={auth.signOut} user = {currentUser}/>
       <Switch>
         <Route exact path="/" component={Homepage}/>         
-        <Route exact path="/shop" component={Shop}/>          
+        <Route exact path="/shop" component={Shop} />          
         <Route exact path="/shop/hats" component={Hats}/>
         <Route exact path="/signin" component={SignInSignUp}/>          
       </Switch>
