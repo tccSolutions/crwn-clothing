@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, redirect, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Homepage } from "./pages/homepage/homepage.component";
 import "./App.css";
 import { Hats } from "./pages/hats/hats.component";

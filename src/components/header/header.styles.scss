@@ -4,26 +4,39 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  flex-flow: wrap;
 
-  .logo-container {
-    height: 100%;
+  .logo-container {    
+    height: 50%;
     width: 70px;
     padding: 25px;
   }
 
-  .options {
-    width: 50%;
+  
+
+  .options {    
+    width:100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end;  
+   
 
+     
     .option {
+      justify-self: flex-end;
       padding: 10px 15px;
-      font-size: 25px;
-      margin:auto 5px;
-      cursor: pointer;
+      font-size: 25px;      
+      cursor: pointer;   
+      
     }
+
+    & .welcome{
+      margin-right: auto;
+      cursor: default;
+     
+    }
+
 
     & a {
       text-decoration: none;
