@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, redirect, Redirect } from "react-router-dom";
 import { Homepage } from "./pages/homepage/homepage.component";
 import "./App.css";
 import { Hats } from "./pages/hats/hats.component";
@@ -7,10 +7,12 @@ import { Shop } from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import { SignInSignUp } from "./pages/sign-in-sign-up/sign-in-sign-up.component";
 import { auth, createProfileDocument } from "./firebase/firebase.util";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
 
+
 function App() {
+  const currentUser = useSelector(state=>state.user.currentUser)
   const dispatch = useDispatch();
 
   //get google data and set current user
@@ -45,7 +47,7 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/shop/hats" component={Hats} />
-        <Route exact path="/signin" component={SignInSignUp} />
+        <Route exact path="/signin" render={()=>currentUser?<Redirect to='/'/>:<SignInSignUp/>} />
       </Switch>
     </div>
   );
