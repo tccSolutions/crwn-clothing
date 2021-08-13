@@ -6,13 +6,13 @@ import './shopping-cart.styles.scss'
 
 export const ShoppingCart=()=>{
 
-    const showCart = useSelector(state=>state.cart.hidden)
+    const items = useSelector(state=>state.cart.items)
     const dispatch = useDispatch();
 
     return(
     <div className='cart-icon' onClick={()=>dispatch(toggleCart())}>
         <CartIcon className='shopping-icon' />
-        <span className='shopping-count'>0</span>
+        <span className='shopping-count'>{items.length}</span>
     </div>
     )
     }
