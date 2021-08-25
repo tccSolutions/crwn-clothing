@@ -9,6 +9,7 @@ import { SignInSignUp } from "./pages/sign-in-sign-up/sign-in-sign-up.component"
 import { auth, createProfileDocument } from "./firebase/firebase.util";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { Checkout } from "./pages/checkout/checkout.page";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/shop/hats" component={Hats} />
         <Route exact path="/signin" render={()=>currentUser?<Redirect to='/'/>:<SignInSignUp/>} />
+        <Route exact path="/cart" component={Checkout} />
       </Switch>
     </div>
   );

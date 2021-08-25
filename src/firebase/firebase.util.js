@@ -12,7 +12,7 @@ const config = {
   };
 
   export const createProfileDocument = async(userAuth, additionalData)=>{
-      if(!userAuth) return;
+          if(!userAuth) return;
 
       const userRef=firestore.doc(`users/${userAuth.uid}`);
       const snapShot = await userRef.get();
