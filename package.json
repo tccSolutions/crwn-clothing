@@ -1,4 +1,5 @@
 {
+  "homepage": "http://tccsolutions.github.io/crwn-clothing",
   "name": "crwn-clothing",
   "version": "0.1.0",
   "private": true,
@@ -33,6 +34,8 @@
   },
   "scripts": {
     "start": "cross-env BROWSER=none PORT=5000 react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
