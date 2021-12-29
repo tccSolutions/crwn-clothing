@@ -45,7 +45,7 @@ function App() {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/crwn-clothing" component={Homepage} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/shop/hats" component={Hats} />
         <Route exact path="/signin" render={()=>currentUser?<Redirect to='/'/>:<SignInSignUp/>} />
